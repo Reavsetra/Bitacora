@@ -1,0 +1,46 @@
+<ion-view view-title="Bitácora">
+  <ion-content>
+	<!-- Lista con las tareas ordenadas de las actividades a realizar -->
+    <ion-list>
+      <ion-item class="item item-icon-right" ng-repeat="actividad in actividades" href="#/app/bitacora/{{actividad.proyecto}}">
+      	<div class="row">
+			<div class="col">{{actividad.sucursal}}</div>
+			<div class="col">{{actividad.proyecto}}</div>
+		</div>
+		<i class="icon ion-flag energized"></i>
+      </ion-item>
+    </ion-list>
+
+  	<div class="list">
+		<div class="item item-divider">
+			Zunfeld Digital
+		</div>
+		<a class="item item-icon-right" href="#">
+			<div class="row">
+				<div class="col">Observatorio</div>
+				<div class="col">Proyecto</div>
+			</div>
+			<i class="icon ion-flag energized"></i>
+		</a>
+		<a class="item item-icon-right" href="#">
+			<div class="row">
+				<div class="col">Observatorio</div>
+				<div class="col">Proyecto</div>
+			</div>
+			<i class="icon ion-flag balanced"></i>
+		</a>
+		<a class="item item-icon-right" href="#">
+			<div class="row">
+				<div class="col">Observatorio</div>
+				<div class="col">Proyecto</div>
+			</div>
+			<i class="icon ion-flag assertive"></i>
+		</a>
+	</div>
+    <ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

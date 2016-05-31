@@ -41,9 +41,33 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('BitacoraCtrl', function($scope) {
+  $scope.actividades = [
+    {
+      cliente: 'Zunfeld Digital',
+      sucursal: 'Observatorio',
+      proyecto: 'Cámaras IP',
+      fecha: '2016-05-11 17:54:07',
+    },
+    {
+      cliente: 'Zunfeld Digital',
+      sucursal: 'Observatorio',
+      proyecto: 'Redes',
+      fecha: '2016-05-11 17:54:07',
+    },
+    {
+      cliente: 'Zunfeld Digital',
+      sucursal: 'Observatorio',
+      proyecto: 'Automatización',
+      fecha: '2016-05-11 17:54:07',
+    }
+  ];
+
   $scope.playlists = [
-    { title: 'Reggae', id: 1 },
+    { 
+      
+
+      title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
     { title: 'Indie', id: 4 },
@@ -53,4 +77,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('LoginCtrl', function(){
+
 });
