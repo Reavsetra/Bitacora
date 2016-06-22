@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngStorage'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $http, $localStorage) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +20,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
+
+//Objeto con la definicion de los headers del
+  //request HTTp, vamos a enviarle JSON al servidor
+  //y vamos a recibir Json del servidor.
+  //Al objeto $http, le establecemos sus propiedades
+  //por defecto para que utilice los headers que 
+  //definimos arriba
+  var defaultHTTPHeaders = {
+    'Content-Type' : 'application/json',
+    'Accept' : 'application/json'
+  };
+
+  $http.defaults.headers.post = defaultHTTPHeaders;
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -38,11 +52,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.menu', {
+    url: '/menu',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/menu.html',
+        controller: 'MenuCtrl'
       }
     }
   })

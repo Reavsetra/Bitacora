@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view ng-controller="LoginCtrl">
   <ion-header-bar>
     <h1 class="title">Login</h1>
     <div class="buttons">
@@ -10,11 +10,11 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="loginData.username" ng-value="loginData.username">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="loginData.password" ng-value="loginData.password">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Log in</button>
