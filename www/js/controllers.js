@@ -41,44 +41,94 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('BitacoraCtrl', function($scope) {
-  $scope.actividades = [
-    {
-      cliente: 'Zunfeld Digital',
-      sucursal: 'Observatorio',
-      proyecto: 'Cámaras IP',
-      fecha: '2016-05-11 17:54:07',
-    },
-    {
-      cliente: 'Zunfeld Digital',
-      sucursal: 'Observatorio',
-      proyecto: 'Redes',
-      fecha: '2016-05-11 17:54:07',
-    },
-    {
-      cliente: 'Zunfeld Digital',
-      sucursal: 'Observatorio',
-      proyecto: 'Automatización',
-      fecha: '2016-05-11 17:54:07',
+.controller('BitacoraCtrl', function($scope, $http, $ionicModal ) {
+
+  // Modal para la vista de la nomenclatura de la bitácora
+  $ionicModal.fromTemplateUrl('templates/infoBitacora.html', {
+    scope: $scope,
+    animation: 'animated' + ' ' + 'zoomIn'
+  }).then(function(modal) {
+    $scope.infoBitacoraModal = modal;
+  });
+
+  // Funciones que se cargarán al entrar en la vista de la BITACORA
+  $scope.$on('$ionicView.enter', function() {
+
+    // Función para que aparezca el botón de información solo en la vista de la bitácora y ejecute la aparición del modal con la nomenclatura
+    $scope.$parent.addButton = function(){
+      $scope.infoBitacoraModal.show();
+      $scope.hideModal = function(){
+        $scope.infoBitacoraModal.hide();
+      };
     }
-  ];
-
-  $scope.playlists = [
-    { 
-      
-
-      title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+  });
+  
+  // Regresar el valor de addButton para que el botón de información de la nomenclatura no se muestre en otras vistas
+  $scope.$on('$stateChangeStart', function() {
+    $scope.$parent.addButton = null;
+  })
+  
+  // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
+  $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
+  .success(function(data){
+    $scope.info = data;
+    console.log('información');
+    console.log($scope.info);
+    $scope.clientes = $scope.info.clientes;
+    console.log($scope.clientes);
+    $scope.actividades = $scope.info.actividades;
+    console.log($scope.actividades);
+  });
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal) {
+  //Funcion para encontrar el index del usuario a buscar
+  function encontrarIndexArray(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+      if(array[i][attr] === value) {
+        return i;
+      }
+    }
+  };
+
+  // Modal para la vista del chat del instalador
+  $ionicModal.fromTemplateUrl('templates/chat.html', {
+    scope: $scope,
+    animation: 'animated' + ' ' + 'zoomIn'
+  }).then(function(modal) {
+    $scope.modalChat = modal;
+  });
+
+  $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
+  .success(function(data){
+    console.log("informacion");
+    console.log(data.actividades);
+    console.log($stateParams.id_Actividad);
+    // localizar el proyecto con base al Id_Actividad dentro del array Proyectos
+    var indexOfUser = encontrarIndexArray(data.actividades, 'id_Actividad', $stateParams.id_Actividad);
+    console.log(indexOfUser);
+    $scope.data = data.actividades[indexOfUser];
+  });
 })
 
-.controller('LoginCtrl', function(){
 
+.controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal) {
+  // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
+    $http.get('js/data.json')
+    .success(function(data){
+      $scope.info = data;
+      console.log('información');
+      console.log($scope.info);
+      $scope.clientes = $scope.info.clientes;
+      console.log($scope.clientes);
+      $scope.actividades = $scope.info.actividades;
+      console.log($scope.actividades);
+    });
+})
+
+.controller('LoginCtrl', function($scope, $state){
+  
+  $scope.doLogin = function(){
+    $state.go('app.dashboard');
+  }
 });

@@ -4,18 +4,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic' , 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
-
-    }
-    if (window.StatusBar) {
+    $window.location.reload(true);
+    if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
@@ -47,30 +41,41 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.dashboard', {
+      url: '/dashboard',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.bitacora', {
-      url: '/bitacora',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/bitacora.html',
-          controller: 'BitacoraCtrl'
+          templateUrl: 'templates/dashboard.html'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.bitacora', {
+    url: '/bitacora',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
+        templateUrl: 'templates/bitacora.html',
         controller: 'BitacoraCtrl'
+      }
+    }
+  })
+
+  .state('app.clientes', {
+    url: '/clientes',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/clientes.html',
+        controller: 'ClientesCtrl'
+      }
+    }
+  })
+
+  .state('app.actividad', {
+    url: '/actividad/:id_Actividad',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/actividad.html',
+        controller: 'ActividadCtrl'
       }
     }
   });
