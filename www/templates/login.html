@@ -1,0 +1,26 @@
+<div class="content-login">
+  <div class="login-wrapper">
+    <div class="login">
+      <form ng-submit="doLogin()">
+        <div class="list">
+          <div class="row">
+            <div class="col col-10"></div>
+            <div class="col col-80">
+              <img src="img/logo.png" class="full-image">
+            </div>
+            <div class="col col-10"></div>
+          </div>
+          <label class="item item-input">
+            <span class="ion-ios-person"></span>
+            <input type="text" ng-model="loginData.username" placeholder="Usuario">
+          </label>
+          <label class="item item-input">
+            <span class="ion-lock-combination"></span>
+            <input type="password" ng-model="loginData.password" placeholder="Password">
+          </label>
+            <button class="button button-block" type="submit">Log in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
