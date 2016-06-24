@@ -29,16 +29,8 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+  // Perform the login action when  the user submits the login form
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
 .controller('BitacoraCtrl', function($scope, $http, $ionicModal ) {
@@ -126,9 +118,41 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('LoginCtrl', function($scope, $state){
-  
-  $scope.doLogin = function(){
-    $state.go('app.dashboard');
-  }
+//Controlador de Login
+.controller('LoginCtrl', function($scope, $state, $http, $timeout, $ionicModal, $ionicPopup){
+//$scope.loginData = {};
+
+    $scope.doLogin = function() {
+    console.log('Doing login', $scope.loginData);
+    //alert($scope.loginData.username);
+      //URL a la que se mandaran los datos al Webservices
+       var envio = $http.post("http://zunfeld.com/servicesApp/loginApp.php", $scope.loginData);
+       console.log('Doing', $scope.loginData.username);
+    envio.success(function(data){
+      console.log(data);
+      if(data == '3'){
+        var alertaRegSim = $ionicPopup.alert({
+            title: ' Zunfeld.com ',
+            template: 'Datos incorrectos'
+        });
+      }else if(data == '2'){
+        var alertaRegSim = $ionicPopup.alert({
+          title: ' Zunfeld.com ',
+          template: 'Bienvenido !'
+        });
+        alertaRegSim.then(function(){
+          $state.go('app.menu', reload=true);
+        }); //Fin cambio de estado
+      } //fin else if
+    }, function(err){
+        console.log("Error");
+    }) //Fin de Envio de datos .success
+  } 
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+ 
+
+    // $scope.doLogin = function(){
+    //   $state.go('app.dashboard');
+    // }
 });

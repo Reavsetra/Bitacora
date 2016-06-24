@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' , 'starter.controllers'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $http) {
   $ionicPlatform.ready(function() {
     $window.location.reload(true);
     if(window.StatusBar) {
@@ -14,6 +14,21 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
+
+
+//Objeto con la definicion de los headers del
+  //request HTTp, vamos a enviarle JSON al servidor
+  //y vamos a recibir Json del servidor.
+  //Al objeto $http, le establecemos sus propiedades
+  //por defecto para que utilice los headers que 
+  //definimos arriba
+  var defaultHTTPHeaders = {
+    'Content-Type' : 'application/json',
+    'Accept' : 'application/json'
+  };
+
+  $http.defaults.headers.post = defaultHTTPHeaders;
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
