@@ -1,0 +1,22 @@
+<ion-modal-view class="chat">
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title">Chat</h1>
+    <button class="button button-clear button-primary" ng-click="modalChat.hide()">Cancelar</button>
+  </ion-header-bar>
+  <ion-content class="content-chat">
+      <div class="conversacion">
+        <div  class="convGlobe" ng-repeat="message in data.chat | orderBy : 'id' : reverse" ng-class=" { instGlobe: message.tipo === 'A' , adminGlobe: message.tipo === 'B' } ">
+          <h2>{{message.emisor}}</h2>
+          <h3><small>Enviado: </small>{{message.fecha}} {{message.hora}}</h3>
+          <p>{{message.Mensaje}}</p>
+        </div>
+      </div>
+        <br>asdasd<br>
+  </ion-content>
+  <div class="bar bar-footer bar-positive bar-footer-chat">
+        <input width="100%" type="text" placeholder="Mensaje...">
+        <button class="button button-small button-calm">
+          Enviar
+        </button>
+  </div>
+</ion-modal-view>
