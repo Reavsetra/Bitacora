@@ -1,3 +1,4 @@
+<ion-modal-view ng-controller="LoginCtrl">
 <div class="content-login">
   <div class="login-wrapper">
     <div class="login">
@@ -12,7 +13,7 @@
           </div>
           <label class="item item-input">
             <span class="ion-ios-person"></span>
-            <input type="text" ng-model="loginData.username" placeholder="Usuario">
+            <input type="text" ng-model="loginData.username" ng-value="loginData.username" placeholder="Usuario">
           </label>
           <label class="item item-input">
             <span class="ion-lock-combination"></span>
@@ -24,3 +25,4 @@
     </div>
   </div>
 </div>
+</ion-modal-view>

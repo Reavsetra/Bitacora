@@ -14,9 +14,7 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
-
-
-//Objeto con la definicion de los headers del
+  //Objeto con la definicion de los headers del
   //request HTTp, vamos a enviarle JSON al servidor
   //y vamos a recibir Json del servidor.
   //Al objeto $http, le establecemos sus propiedades

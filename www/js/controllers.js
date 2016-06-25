@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopup) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
   //});
 
   // Form data for the login modal
-  $scope.loginData = {};
+  // $scope.loginData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -119,15 +119,12 @@ angular.module('starter.controllers', [])
 })
 
 //Controlador de Login
-.controller('LoginCtrl', function($scope, $state, $http, $timeout, $ionicModal, $ionicPopup){
-//$scope.loginData = {};
-
-    $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-    //alert($scope.loginData.username);
-      //URL a la que se mandaran los datos al Webservices
-       var envio = $http.post("http://zunfeld.com/servicesApp/loginApp.php", $scope.loginData);
-       console.log('Doing', $scope.loginData.username);
+.controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicPopup, $state, $rootScope){
+  //Objeto que contendra los datos que introduscan en el formulario
+  $scope.loginData = {};
+  //Login para entrar a la Aplicacion
+  $scope.doLogin = function(){
+    var envio = $http.post("http://zunfeld.com/servicesApp/loginApp.php", $scope.loginData);
     envio.success(function(data){
       console.log(data);
       if(data == '3'){
@@ -147,12 +144,5 @@ angular.module('starter.controllers', [])
     }, function(err){
         console.log("Error");
     }) //Fin de Envio de datos .success
-  } 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
- 
-
-    // $scope.doLogin = function(){
-    //   $state.go('app.dashboard');
-    // }
-});
+  } //Fin de Funcion de accion del Boton
+}) 
