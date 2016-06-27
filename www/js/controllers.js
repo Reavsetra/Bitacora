@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopup) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
   //});
 
   // Form data for the login modal
-  $scope.loginData = {};
+  // $scope.loginData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -29,20 +29,12 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+  // Perform the login action when  the user submits the login form
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
-.controller('BitacoraCtrl', function($scope, $http, $ionicModal ) {
-
+.controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope) {
+ 
   // Modal para la vista de la nomenclatura de la bitácora
   $ionicModal.fromTemplateUrl('templates/infoBitacora.html', {
     scope: $scope,
@@ -67,10 +59,11 @@ angular.module('starter.controllers', [])
   $scope.$on('$stateChangeStart', function() {
     $scope.$parent.addButton = null;
   })
-  
+
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
   $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
   .success(function(data){
+    // alert($scope.name);
     $scope.info = data;
     console.log('información');
     console.log($scope.info);
@@ -80,8 +73,7 @@ angular.module('starter.controllers', [])
     console.log($scope.actividades);
   });
 })
-
-.controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal) {
+.controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   //Funcion para encontrar el index del usuario a buscar
   function encontrarIndexArray(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
@@ -112,7 +104,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal) {
+.controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
     $http.get('js/data.json')
     .success(function(data){
@@ -126,9 +118,39 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('LoginCtrl', function($scope, $state){
-  
+//Controlador de Login
+.controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicPopup, $state, $rootScope){
+  //Objeto que contendra los datos que introduscan en el formulario
+  $scope.loginData = {};
+
+  //Login para entrar a la Aplicacion
   $scope.doLogin = function(){
-    $state.go('app.dashboard');
-  }
-});
+    var envio = $http.post("http://zunfeld.com/servicesApp/loginApp.php", $scope.loginData);
+    envio.success(function(data){
+      console.log($scope.loginData.username);
+      console.log(data);
+      // alert(data);
+      if(data == 3){
+        var alertaRegSim = $ionicPopup.alert({
+            title: ' Zunfeld.com ',
+            template: 'No has realizado registro de Entrada Trabajo en CHKTE'
+        });
+      }else if(data == 2){
+        var alertaRegSim = $ionicPopup.alert({
+            title: ' Zunfeld.com ',
+            template: 'Usuario y/o contraseña incorecta'
+        });
+      }else if(data == 1){
+        var alertaRegSim = $ionicPopup.alert({
+          title: ' Zunfeld.com ',
+          template: 'Bienvenido !'
+        });
+        alertaRegSim.then(function(){
+          $state.go('app.dashboard');
+        }); //Fin cambio de estado
+      } //fin else if
+    }, function(err){
+        console.log("Error");
+    }) //Fin de Envio de datos .success
+  } //Fin de Funcion de accion del Boton
+}) 
