@@ -33,8 +33,8 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BitacoraCtrl', function($scope, $http, $ionicModal ) {
-
+.controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope) {
+ 
   // Modal para la vista de la nomenclatura de la bitácora
   $ionicModal.fromTemplateUrl('templates/infoBitacora.html', {
     scope: $scope,
@@ -59,10 +59,11 @@ angular.module('starter.controllers', [])
   $scope.$on('$stateChangeStart', function() {
     $scope.$parent.addButton = null;
   })
-  
+
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
   $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
   .success(function(data){
+    // alert($scope.name);
     $scope.info = data;
     console.log('información');
     console.log($scope.info);
@@ -72,8 +73,7 @@ angular.module('starter.controllers', [])
     console.log($scope.actividades);
   });
 })
-
-.controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal) {
+.controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   //Funcion para encontrar el index del usuario a buscar
   function encontrarIndexArray(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal) {
+.controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
     $http.get('js/data.json')
     .success(function(data){
@@ -122,23 +122,31 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicPopup, $state, $rootScope){
   //Objeto que contendra los datos que introduscan en el formulario
   $scope.loginData = {};
+
   //Login para entrar a la Aplicacion
   $scope.doLogin = function(){
     var envio = $http.post("http://zunfeld.com/servicesApp/loginApp.php", $scope.loginData);
     envio.success(function(data){
+      console.log($scope.loginData.username);
       console.log(data);
-      if(data == '3'){
+      // alert(data);
+      if(data == 3){
         var alertaRegSim = $ionicPopup.alert({
             title: ' Zunfeld.com ',
-            template: 'Datos incorrectos'
+            template: 'No has realizado registro de Entrada Trabajo en CHKTE'
         });
-      }else if(data == '2'){
+      }else if(data == 2){
+        var alertaRegSim = $ionicPopup.alert({
+            title: ' Zunfeld.com ',
+            template: 'Usuario y/o contraseña incorecta'
+        });
+      }else if(data == 1){
         var alertaRegSim = $ionicPopup.alert({
           title: ' Zunfeld.com ',
           template: 'Bienvenido !'
         });
         alertaRegSim.then(function(){
-          $state.go('app.menu', reload=true);
+          $state.go('app.dashboard');
         }); //Fin cambio de estado
       } //fin else if
     }, function(err){
