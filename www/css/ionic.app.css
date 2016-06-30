@@ -9880,6 +9880,7 @@ a.button {
       color: #fff;
       font-size: 3em; }
   .content-login {
+    height: 100%;
     background-color: #0d4f9d;
     background-image: url(../img/login.jpg);
     background-size: auto 100%;
@@ -9889,7 +9890,7 @@ a.button {
       display: table !important;
       padding: 15px;
       width: 100% !important;
-      height: 100% !important; }
+      height: 100%; }
     .content-login .login {
       display: table-cell;
       vertical-align: middle;
