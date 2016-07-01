@@ -60,19 +60,13 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
     $scope.$parent.addButton = null;
   })
 
-
+  //Traer Username del usuario que se logeo
   var nombre = localStorage.getItem("userName");
-  //alert(nombre); 
-
   $scope.loginStorage = nombre;
-  // $scope.logistorage = $scope.loginData;
-
-  // // $scope.user.name = 'programacion@zunfeld.com';
-  // //$scope.storage = $scope.loginData.username;
-  // console.log('USUARIO' + $scope.logistorage);
-
+ 
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
-  $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=$scope.loginStorage')
+  $scope.direccion = 'http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=' + $scope.loginStorage;
+  $http.get($scope.direccion)
   .success(function(data){
     $scope.info = data;
     console.log('información');
@@ -132,11 +126,7 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
 .controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicPopup, $state, $rootScope, $localStorage){
   //Objeto que contendra los datos que introduscan en el formulario
   $scope.loginData = {};
-
- var storage = localStorage;
-
-     
-
+  var storage = localStorage;
 
   //Login para entrar a la Aplicacion
   $scope.doLogin = function(){
@@ -156,9 +146,8 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
             template: 'Usuario y/o contraseña incorecta'
         });
       }else if(data == 1){
-          storage.setItem("userName", $scope.loginData.username);
-          console.log('Valor guardado '  + $scope.loginData.username);
-
+        storage.setItem("userName", $scope.loginData.username);
+        console.log('Valor guardado '  + $scope.loginData.username);
         var alertaRegSim = $ionicPopup.alert({
           title: ' Zunfeld.com ',
           template: 'Bienvenido !'
