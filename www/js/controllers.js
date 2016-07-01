@@ -1,10 +1,12 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopup) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopup,$localStorage) {
 
+     var nombre = localStorage.getItem("userName");
+     $scope.loginStorage = nombre;
 })
 
-.controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope) {
+.controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope,$localStorage) {
  
   // Modal para la vista de la nomenclatura de la bitácora
   $ionicModal.fromTemplateUrl('templates/infoBitacora.html', {
@@ -31,10 +33,14 @@ angular.module('starter.controllers', [])
     $scope.$parent.addButton = null;
   })
 
+  //Traer Username del usuario que se logeo
+  var nombre = localStorage.getItem("userName");
+  $scope.loginStorage = nombre;
+ 
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
-  $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
+  $scope.direccion = 'http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=' + $scope.loginStorage;
+  $http.get($scope.direccion)
   .success(function(data){
-    // alert($scope.name);
     $scope.info = data;
     console.log('información');
     console.log($scope.info);
@@ -44,6 +50,7 @@ angular.module('starter.controllers', [])
     console.log($scope.actividades);
   });
 })
+
 .controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   //Funcion para encontrar el index del usuario a buscar
   function encontrarIndexArray(array, attr, value) {
@@ -90,9 +97,10 @@ angular.module('starter.controllers', [])
 })
 
 //Controlador de Login
-.controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicPopup, $state, $rootScope){
+.controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicPopup, $state, $rootScope, $localStorage){
   //Objeto que contendra los datos que introduscan en el formulario
   $scope.loginData = {};
+  var storage = localStorage;
 
   //Login para entrar a la Aplicacion
   $scope.doLogin = function(){
@@ -112,6 +120,8 @@ angular.module('starter.controllers', [])
             template: 'Usuario y/o contraseña incorecta'
         });
       }else if(data == 1){
+        storage.setItem("userName", $scope.loginData.username);
+        console.log('Valor guardado '  + $scope.loginData.username);
         var alertaRegSim = $ionicPopup.alert({
           title: ' Zunfeld.com ',
           template: 'Bienvenido !'
