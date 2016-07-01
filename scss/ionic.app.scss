@@ -52,17 +52,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .chat{
     background-color: ghostwhite;
 }
-// .scroll-content {
-//   display: table !important;
-//   width: 100% !important;
-//   height: 100% !important;
-// }
-// .scroll {
-//   display: table-cell;
-//   vertical-align: middle;
-//   text-align: center;
-// }
-
 .content{
   	background-image: url(../img/back.jpg);
 	&-sidemenu{
@@ -144,11 +133,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		}
 	}
 	&-login{
+		 height: 100% ;
 		.login-wrapper{
-		  display: table !important;
-		  padding:15px;
-		  width: 100% !important;
-		  height: 100% !important;
+			display: table !important;
+			padding:15px;
+			width: 100% !important;
+			height: 100% ;
 		}
 		background-color: $themeA;
   		background-image: url(../img/login.jpg);
@@ -216,7 +206,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		}
 	}
 }
-
 .optA{
 	padding:5px;
     @include linearGradient(lighten($themeC, 20%), darken($themeC, 15%));
@@ -246,7 +235,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     @include linearGradient(lighten($themeE, 20%), darken($themeE, 20%));
 	color: $light;
 }
-
 .client-data{
 	.client-buttons{
 			display: flex;
@@ -279,7 +267,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		}
 	}
 }
-
 .bar-footer{
 	&-chat input{
 	    width: 100%;
@@ -288,7 +275,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	    padding: 5px;
 	}
 }
-
 .conversacion{
 	background-color: $light;
 	.convGlobe{
@@ -328,7 +314,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		}
 	}
 }
-
 // animaciones
 .priena.ng-enter{
     -webkit-animation: fadeInDown 600ms;
