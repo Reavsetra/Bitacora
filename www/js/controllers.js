@@ -2,6 +2,8 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopup,$localStorage) {
 
+     var nombre = localStorage.getItem("userName");
+     $scope.loginStorage = nombre;
 })
 
 .controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope,$localStorage) {
@@ -48,6 +50,7 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
     console.log($scope.actividades);
   });
 })
+
 .controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   //Funcion para encontrar el index del usuario a buscar
   function encontrarIndexArray(array, attr, value) {
