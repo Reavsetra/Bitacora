@@ -21,8 +21,18 @@
     }
   ],
   "cordovaPlatforms": [
+<<<<<<< HEAD
+<<<<<<< HEAD
 
     "ios",
     "android"
+=======
+    "android",
+    "ios"
+>>>>>>> origin/master
+=======
+    "android",
+    "ios"
+>>>>>>> origin/master
   ]
 }
