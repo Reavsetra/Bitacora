@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
+<widget id="com.zunfeld.zunfeldit" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>ZunfeldIT</name>
+=======
 <widget id="com.zunfeld.zunfeldit" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Zunfeld IT</name>
+>>>>>>> sircestrada
   <description>
     ZUNFELD DIGITAL SA DE CV.
   </description>
