@@ -21,12 +21,8 @@
     }
   ],
   "cordovaPlatforms": [
-<<<<<<< HEAD
+
     "ios",
     "android"
-=======
-    "android",
-    "ios"
->>>>>>> sircestrada
   ]
 }
