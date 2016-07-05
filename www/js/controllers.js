@@ -84,7 +84,7 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
 
 .controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
-    $http.get('js/data.json')
+    $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
     .success(function(data){
       $scope.info = data;
       console.log('información');
