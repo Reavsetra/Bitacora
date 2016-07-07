@@ -39,6 +39,7 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
  
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
   $scope.direccion = 'http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=' + $scope.loginStorage;
+  //$scope.direccion = 'js/data.json'
   $http.get($scope.direccion)
   .success(function(data){
     $scope.info = data;
@@ -69,7 +70,14 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
     $scope.modalChat = modal;
   });
 
-  $http.get('http://www.zunfeld.com/servicesApp/actividades_copy.php')
+
+  //Traer Username del usuario que se logeo
+  var nombre = localStorage.getItem("userName");
+  $scope.loginStorage = nombre;
+
+  $scope.direccion = 'http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=' + $scope.loginStorage;
+  //$scope.direccion = 'js/data.json'
+  $http.get($scope.direccion)
   .success(function(data){
     console.log("informacion");
     console.log(data.actividades);

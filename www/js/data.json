@@ -1,1 +1,115 @@
-{"clientes":[{"id":"1","nombre":"Zunfeld Digital"},{"id":"5","nombre":"Pepsi"}],"actividades":[{"cliente":"Zunfeld Digital","sucursal":"observatorio","proyecto":"proyecto","tareas":[{"id_Bitacora":"16","id_Actividad":"16","Actividad":"abc","Observaciones":"abc"}]},{"cliente":"Zunfeld Digital","sucursal":"observatorio","proyecto":"proyecto","tareas":[{"id_Bitacora":"17","id_Actividad":"17","Actividad":"17 uno","Observaciones":""}]},{"cliente":"Zunfeld Digital","sucursal":"observatorio","proyecto":"proyecto","tareas":[{"id_Bitacora":"18","id_Actividad":"18","Actividad":"omi","Observaciones":"omi"},{"id_Bitacora":"18","id_Actividad":"18","Actividad":"abc","Observaciones":"abc"}]},{"cliente":"Zunfeld Digital","sucursal":"observatorio","proyecto":"proyecto","tareas":[{"id_Bitacora":"19","id_Actividad":"19","Actividad":"","Observaciones":""},{"id_Bitacora":"19","id_Actividad":"19","Actividad":" modem","Observaciones":"remplazar  modem"},{"id_Bitacora":"19","id_Actividad":"19","Actividad":"chisto","Observaciones":"revizar"}]},{"cliente":"Zunfeld Digital","sucursal":"observatorio","proyecto":"proyecto","tareas":[{"id_Bitacora":"20","id_Actividad":"20","Actividad":"webos a todos","Observaciones":"en especial al omar"}]},{"cliente":"Zunfeld Digital","sucursal":"observatorio","proyecto":"proyecto","tareas":[{"id_Bitacora":"21","id_Actividad":"21","Actividad":"cuatro","Observaciones":"asdasd"},{"id_Bitacora":"21","id_Actividad":"21","Actividad":"tres","Observaciones":"asdasdasd"},{"id_Bitacora":"21","id_Actividad":"21","Actividad":"dos","Observaciones":"asdasd"},{"id_Bitacora":"21","id_Actividad":"21","Actividad":"uno","Observaciones":"asdasdasd"}]},{"cliente":"Pepsi","sucursal":"DEMO01","proyecto":"01","tareas":[{"id_Bitacora":"22","id_Actividad":"22","Actividad":"AC01","Observaciones":"AC01"}]}]}
+{
+	"clientes": [{
+		"id": "11",
+		"nombre": "EXPORTADORES UNIDOS",
+		"rfc": "XAXX010101000",
+		"direccion": "CONOCIDO",
+		"telefono_con": "1111111111",
+		"email_con": "exportadores@gmail.com",
+		"contacto": "Nombre del contacto",
+		"cel_con": "1111111111",
+		"sucursales": [{
+			"id_Sucursal": "33",
+			"Nombre_Sucursal": "EXPORTADORES UNIDOS",
+			"contacto": "Nombre del contacto",
+			"telefono": "1111111111",
+			"celular": "1111111111",
+			"email": "exportadores@gmail.com",
+			"direccion": "CONOCIDO"
+		}]
+	}, {
+		"id": "10",
+		"nombre": "PUENTE CONTADERO",
+		"rfc": "XAXX010101000",
+		"direccion": "CONOCIDO",
+		"telefono_con": "1111111111",
+		"email_con": "contadero@gmail.com",
+		"contacto": "Nombre del contacto",
+		"cel_con": "1111111111",
+		"sucursales": [{
+			"id_Sucursal": "32",
+			"Nombre_Sucursal": "PUENTE CONTADERO",
+			"contacto": "Nombre del contacto",
+			"telefono": "1111111111",
+			"celular": "1111111111",
+			"email": "puente@gmail.com",
+			"direccion": "CONOCIDO"
+		}]
+	}, {
+		"id": "9",
+		"nombre": "ZUNFELD DIGITAL SA DE CV",
+		"rfc": "XAXX010101000",
+		"direccion": "JOSE MA CASTORENA 425",
+		"telefono_con": "5558130024",
+		"email_con": "ventas@zunfeld.com",
+		"contacto": "CRISTOPHER ARGENIS ESTRADA HERNANDEZ",
+		"cel_con": "2147483647",
+		"sucursales": [{
+			"id_Sucursal": "31",
+			"Nombre_Sucursal": "PLAZA CUAJIMALPA",
+			"contacto": "CRISTOPHER ARGENIS ESTRADA HERNANDEZ",
+			"telefono": "5558130024",
+			"celular": "5558130024",
+			"email": "ventas@zunfeld.com",
+			"direccion": "JOSE MA CASTORENA 425"
+		}]
+	}, {
+		"id": "16",
+		"nombre": "DEMO 01",
+		"rfc": "X",
+		"direccion": "X",
+		"telefono_con": "1111111111",
+		"email_con": "a@a.com",
+		"contacto": "DEMO 01",
+		"cel_con": "1111111111",
+		"sucursales": [{
+			"id_Sucursal": "34",
+			"Nombre_Sucursal": "01",
+			"contacto": "01",
+			"telefono": "1111111111",
+			"celular": "1111111111",
+			"email": "a@a.com",
+			"direccion": "01"
+		}]
+	}],
+	"actividades": [{
+		"id": "12",
+		"id_Actividad": "43",
+		"cliente": "ZUNFELD DIGITAL SA DE CV",
+		"id_sucursal": "31",
+		"sucursal": "PLAZA CUAJIMALPA",
+		"proyecto": "APP ZUNFELD",
+		"estatus": "Actividad Asignada por el administrador",
+		"tareas": [{
+			"id_Bitacora": "115",
+			"id_Actividad": "43",
+			"Actividad": "HOLA",
+			"Observaciones": "BIT UNO"
+		}],
+		"chat": [{
+			"idChat": "63",
+			"proyecto": "BIT EMMA",
+			"actividad": "HOLA",
+			"iduser": "1",
+			"usuario": "ISRAEL",
+			"mensaje": "HOLA CHAT UNO\n",
+			"fecha": "2016-07-07 11:12:00"
+		}, {
+			"idChat": "64",
+			"proyecto": "BIT EMMA",
+			"actividad": "HOLA",
+			"iduser": "1",
+			"usuario": "ISRAEL",
+			"mensaje": "SALUDOS MEN \n",
+			"fecha": "2016-07-07 11:12:10"
+		}, {
+			"idChat": "65",
+			"proyecto": "BIT EMMA",
+			"actividad": "HOLA",
+			"iduser": "8",
+			"usuario": "EVER EMMANUEL NAVARRO CERVANTES",
+			"mensaje": "que hay\n",
+			"fecha": "2016-07-07 12:17:46"
+		}]
+	}]
+}
