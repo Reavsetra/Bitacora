@@ -1,14 +1,19 @@
 angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopup,$localStorage) {
-     var nombre = localStorage.getItem("userName");
-     $scope.loginStorage = nombre; 
-})
+  //Obtener los datos del usuario que se logeó
+  var nombre = localStorage.getItem("userName");
+  $scope.loginStorage = nombre;
 
-.controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope,$localStorage, $ionicLoading) {
   // llamar a una conexión PHP con base de datos para obtener los datos de las actividades por cliente de cada instalador
   $scope.direccion = 'http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=' + $scope.loginStorage;
   //$scope.direccion = 'js/data.json';
+
+  $scope.URLEnvioChat = 'http://www.zunfeld.com/servicesApp/envioChat.php';
+})
+
+.controller('BitacoraCtrl', function($scope, $http, $ionicModal,$ionicPopup, $rootScope,$localStorage, $ionicLoading) {
+  
   $http.get($scope.direccion)
   .success(function(data){
     $ionicLoading.hide();
@@ -61,6 +66,7 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
 })
 
 .controller('ActividadCtrl', function($scope, $http, $state, $stateParams, $ionicModal, $ionicPopup, $ionicLoading, $ionicScrollDelegate,$ionicActionSheet,$timeout) {
+
   //Funcion para encontrar el index del usuario a buscar
   function encontrarIndexArray(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
@@ -78,42 +84,43 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
     $scope.modalChat = modal;
   });
 
-  //Traer Username del usuario que se logeo
-  var nombre = localStorage.getItem("userName");
-  $scope.loginStorage = nombre;
-
-  $scope.direccion = 'http://www.zunfeld.com/servicesApp/actividades_copy.php?nombre=' + $scope.loginStorage;
-  //$scope.direccion = 'js/data.json'
   $ionicLoading.show();
   $http.get($scope.direccion)
   .success(function(data){
     //Cerrar el Loading
     $ionicLoading.hide();
 
-    console.log("informacion");
-    console.log(data.actividades);
-    console.log($stateParams.id_Actividad);
-
     // localizar el proyecto con base al Id_Actividad dentro del array Proyectos
     var indexOfUser = encontrarIndexArray(data.actividades, 'id_Actividad', $stateParams.id_Actividad);
-    console.log(indexOfUser);
     $scope.data = data.actividades[indexOfUser];
   });
 
+  //Abrir el chat de cada tarea
   $scope.openTarea = function(id) {
+    //tomar el Id de bitacora
     $scope.selectedId = id;
-    console.log($scope.selectedId);
+    //instanciar variable de nuevo chat
+    $scope.newChat = {};
+    $scope.newChat.chat = '';
+
+    //mostrar el modal del chat
     $scope.modalChat.show();
-    console.log($scope.data.tareas);
+
+    //Posisionar el Scroll a mostar el último elemento agregado
+    $ionicScrollDelegate.scrollBottom(true);
+
+    //Encontrar el index de la tarea con base al id de bitacora
     var indexOfTarea = encontrarIndexArray($scope.data.tareas, 'id_Bitacora', $scope.selectedId);
 
+    //Obtener la información de los chats de la actividad seleccionada
     $scope.conversacion = $scope.data.tareas[indexOfTarea].chat;
-    console.log($scope.conversacion);
 
 
+    //Enviar nuevo mensaje de chat
     $scope.sendData = function(){
 
-      $scope.newChat = {};
+      $ionicLoading.show();
+
       //funcion para obtener la hora de forma normal
       $scope.obtHoraPrint = function(){
         var fechaHora = new Date();
@@ -146,47 +153,49 @@ angular.module('starter.controllers', ['ngCordova', 'ngStorage'])
         $timeout(this, 1000);
       };
 
-      $scope.conversacion.push({
-        "idChat": "64",
-        "proyecto": "BIT EMMA",
-        "actividad": "HOLA",
-        "iduser": "8",
-        "usuario": "EVER EMMANUEL NAVARRO CERVANTES",
-        "mensaje": $scope.newChat.mensaje,
-        "fecha": $scope.obtFecha() + ' ' + $scope.obtHoraPrint()
-      });
-
+      console.log($scope.newChat.chat);
+      //Igualar datos del nuevo chat al Objeto newChat
       $scope.newChat.userName = $scope.loginStorage;
       $scope.newChat.idBitacora = $scope.data.tareas[indexOfTarea].id_Actividad;
       $scope.newChat.idDBitacora = $scope.data.tareas[indexOfTarea].id_Bitacora;
-      $scope.newChat.chat = $scope.newChat.mensaje;
       $scope.newChat.fechaHora  = $scope.obtFecha() + ' ' + $scope.obtHoraPrint();
 
-      $ionicScrollDelegate.scrollBottom(true);
+      
 
       console.log("informacion");
-      console.log($scope.newChat);
+      console.log($scope.data.tareas[indexOfTarea].id_Bitacora);
 
-      $http.post('http://www.zunfeld.com/servicesApp/envioChat.php', $scope.newChat).success(
+      $http.post($scope.URLEnvioChat, $scope.newChat).success(
         function(data){
+
           $scope.response = data;
           console.log($scope.response);
 
+          //Actualizar los datos del chat
           $http.get($scope.direccion)
           .success(
-            function(data){
-              $scope.conversacion = data.tareas[indexOfTarea].chat;
+            function(data){ 
+              console.log(data);
+              //Encontrar el index de la tarea con base al id de bitacora
+              var indexOfUser = encontrarIndexArray(data.actividades, 'id_Actividad', $scope.newChat.idBitacora);
+
+              console.log('obtener');
+              console.log(data.actividades[indexOfUser].tareas[indexOfTarea].chat);
+              //$scope.conversacion = data.tareas[indexOfTarea].chat;
+              $scope.conversacion = data.actividades[indexOfUser].tareas[indexOfTarea].chat;
+              $scope.newChat.chat = '';
+              //Posisionar el Scroll a mostar el último elemento agregado
+              $ionicScrollDelegate.scrollBottom(true);
+              $ionicLoading.hide();
             }
           )
         }
       )
-      $scope.newChat.mensaje = '';
     };
   }
 })
 
 .controller('ChatCtrl', function($scope, $http){
-  
 })
 
 .controller('ClientesCtrl', function($scope, $http, $state, $stateParams, $ionicModal,$ionicPopup) {
