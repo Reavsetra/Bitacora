@@ -133,7 +133,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		}
 	}
 	&-login{
-		 height: 100% ;
+		height: 100% ;
 		.login-wrapper{
 			display: table !important;
 			padding:15px;
@@ -198,7 +198,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			padding:0px;
 		}
 		.item{
+			padding:5px;
 			color: lighten($dark, 50%);
+			h3{
+				display: block;
+				font-size: 1rem;
+				text-transform: capitalize; 
+				small{
+					display: block;
+					color: lighten($dark, 50%)
+				}
+			}
 		}
 		.item-divider{
 			background-color: lighten($energized, 10%);
@@ -275,42 +285,69 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	    padding: 5px;
 	}
 }
-.conversacion{
-	background-color: $light;
-	.convGlobe{
-		margin: 10px;
-		padding:10px;
-		width: 80%;
-		background-color: $light;
-		h2{
-			margin-bottom: 0px;
-			font-size: 1.2em;
+
+//Spiner
+.loading-container{
+	.loading {
+	    background-color: transparent;
+	    font-size: 20px;
+	    .spinner svg {
+		  width: 40px;
+		  height: 40px;
+		  stroke: $light;
+		  fill: $light;
 		}
-		h3{	
+	}
+} 
+
+.conversacion {
+	&:last-child{
+			width: 100%;
+			display: block;
+			color: $themeD;
+		}
+	.convGlobe {
+		margin: 10px;
+		padding: 10px;
+		width: 80%;
+		box-shadow: 2px 2px 5px #bfbfbf;
+		background-image: linear-gradient(-90deg, #fcfcfc, #f7f7f7);
+		
+		h2 {
+		    margin-bottom: 3px;
+		    margin-top: 5px;
+		    font-size: 1em;
+		}
+		h3{
+			color: gray;
 			text-align: left;
 			margin-top: 0px;
-			font-size: 0.8em;
+			font-size: 1em;
+		}
+		p{
+			color: #000000;
+			text-align: justify;
+			font-size: 1em;
 		}
 	}
-	.instGlobe{
-		@extend .convGlobe;
+	.instGlobe {
+		p {
+		  color: #000000;
+		  text-align: justify;
+		  font-size: 1em;
+		}
 		float: left;
-		border-left: 5px solid $positive;
-		h2{
-			color: $positive;
-		}
-		h3{	
-			color: lighten($dark, 40%); 
+		border-left: 5px solid #0067A6;
+		h2 {
+		  color: #0067A6;
 		}
 	}
-	.adminGlobe{
+	.adminGlobe {
 		float: right;
-		border-right: 5px solid $themeC;
-		h2{
-			color: $themeC;
-		}
-		h3{	
-			color: lighten($dark, 40%); 
+		border-right: 5px solid #FF4136;
+		background-image: linear-gradient(-90deg, #fcfcfc, #f7f7f7);
+		h2 {
+		  color: #FF4136;
 		}
 	}
 }
