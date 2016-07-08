@@ -1,5 +1,9 @@
 <ion-view view-title="Bitácora">
 	<ion-content class="content-bitacora">
+	<ion-refresher
+    pulling-text="Actualizar..."
+    on-refresh="recargarDatos()">
+	</ion-refresher>
 		<!-- Lista con las tareas ordenadas de las actividades a realizar -->
 	    <div class="card card-bitacora" ng-repeat="cliente in clientes" ng-show="filteredEntries.length">
 	    	<div class="list">
@@ -8,9 +12,9 @@
 				</div>
 		    	<a class="item item-icon-right" ng-repeat="actividad in filteredEntries = ( actividades| filter: { 'cliente': cliente.nombre })" href="#/app/actividad/{{actividad.id_Actividad}}">
 			      	<div class="row">
-						<div class="col">{{actividad.sucursal}}</div>
-						<div class="col">{{actividad.proyecto}}</div>
-						<div class="col">{{actividad.id_Actividad}}</div>
+						<div class="col">
+							<h3>{{actividad.sucursal}}<small>{{actividad.proyecto}}</small></h3>
+						</div>
 					</div>
 					<i class="icon ion-flag energized"></i>
 		      	</a>
