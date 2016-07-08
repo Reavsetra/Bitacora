@@ -84,32 +84,100 @@
 			"id_Bitacora": "115",
 			"id_Actividad": "43",
 			"Actividad": "HOLA",
-			"Observaciones": "BIT UNO"
-		}],
-		"chat": [{
-			"idChat": "63",
-			"proyecto": "BIT EMMA",
-			"actividad": "HOLA",
-			"iduser": "1",
-			"usuario": "ISRAEL",
-			"mensaje": "HOLA CHAT UNO\n",
-			"fecha": "2016-07-07 11:12:00"
+			"Observaciones": "BIT UNO",
+			"chat": [{
+				"idDetalleBitacora": "115",
+				"idBit": "43",
+				"idChat": "65",
+				"proyecto": "BIT EMMA",
+				"actividad": "HOLA",
+				"iduser": "8",
+				"usuario": "EVER EMMANUEL NAVARRO CERVANTES",
+				"mensaje": "que hay\n",
+				"fecha": "2016-07-07 12:17:46"
+			}]
+		}]
+	}, {
+		"id": "16",
+		"id_Actividad": "44",
+		"cliente": "PUENTE CONTADERO",
+		"id_sucursal": "32",
+		"sucursal": "PUENTE CONTADERO",
+		"proyecto": "REVICION CTV01",
+		"estatus": "Actividad Asignada por el administrador",
+		"tareas": [{
+			"id_Bitacora": "116",
+			"id_Actividad": "44",
+			"Actividad": "TAREA PUENTE 01",
+			"Observaciones": "LA TAREA DE PUENTE CONTADERO ES IR A REALIZAR UINOS CAMBIOS EN LA ESTRUCTURA DE LA REJA QUE SE ENCUENTRA EN EL PATIO DE LA SEÑORA PLOTNIK",
+			"chat": [{
+				"idDetalleBitacora": "116",
+				"idBit": "44",
+				"idChat": "66",
+				"proyecto": "REVICION CTV01",
+				"actividad": "TAREA PUENTE 01",
+				"iduser": "1",
+				"usuario": "ISRAEL",
+				"mensaje": "VIENTOS ESPERO ESTO AHORA SI JALE",
+				"fecha": "2016-07-07 12:34:43"
+			}]
 		}, {
-			"idChat": "64",
-			"proyecto": "BIT EMMA",
-			"actividad": "HOLA",
-			"iduser": "1",
-			"usuario": "ISRAEL",
-			"mensaje": "SALUDOS MEN \n",
-			"fecha": "2016-07-07 11:12:10"
+			"id_Bitacora": "117",
+			"id_Actividad": "44",
+			"Actividad": "TAREA PUENTE 02",
+			"Observaciones": "COMO NO VA A JALAR ESTA MADRE SI ES UNA DE LAS MAS CABRONAS QUE EXISTEN EN EL MUNDO MUNDIAL",
+			"chat": [{
+				"idDetalleBitacora": "117",
+				"idBit": "44",
+				"idChat": "66",
+				"proyecto": "REVICION CTV01",
+				"actividad": "TAREA PUENTE 02",
+				"iduser": "1",
+				"usuario": "ISRAEL",
+				"mensaje": "LA MAS CHINGONA",
+				"fecha": "2016-07-07 12:34:43"
+			}]
 		}, {
-			"idChat": "65",
-			"proyecto": "BIT EMMA",
-			"actividad": "HOLA",
-			"iduser": "8",
-			"usuario": "EVER EMMANUEL NAVARRO CERVANTES",
-			"mensaje": "que hay\n",
-			"fecha": "2016-07-07 12:17:46"
+			"id_Bitacora": "118",
+			"id_Actividad": "44",
+			"Actividad": "TAREA PUENTE 03",
+			"Observaciones": "03",
+			"chat": [{
+				"idDetalleBitacora": "118",
+				"idBit": "44",
+				"idChat": "66",
+				"proyecto": "PRUEBA mil OCHO mil",
+				"actividad": "TAREA PUENTE 03",
+				"iduser": "1",
+				"usuario": "ISRAEL",
+				"mensaje": "ESTA ES LA ULTIMA Y NOS VAMOS",
+				"fecha": "2016-07-07 12:34:43"
+			}]
+		}]
+	}, {
+		"id": "18",
+		"id_Actividad": "45",
+		"cliente": "EXPORTADORES UNIDOS",
+		"id_sucursal": "33",
+		"sucursal": "EXPORTADORES UNIDOS",
+		"proyecto": "REVISAR TELEFONO ",
+		"estatus": "Actividad Asignada por el administrador",
+		"tareas": [{
+			"id_Bitacora": "119",
+			"id_Actividad": "45",
+			"Actividad": "CABLEADO",
+			"Observaciones": "Elaborar un cableado de todos los teléfonos que se encuentran en la sala de emergencias para poder tener un monitoreo de todas las conversaciones desde la recepción del hospital",
+			"chat": [{
+				"idDetalleBitacora": "119",
+				"idBit": "45",
+				"idChat": "66",
+				"proyecto": "PRUEBA mil OCHO mil",
+				"actividad": "CABLEADO",
+				"iduser": "1",
+				"usuario": "ISRAEL",
+				"mensaje": "ESTA ES UNA PRUEBA DE EXPORTADORES UNIDOS",
+				"fecha": "2016-07-07 12:34:43"
+			}]
 		}]
 	}]
 }

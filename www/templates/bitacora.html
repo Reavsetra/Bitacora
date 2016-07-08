@@ -1,5 +1,9 @@
 <ion-view view-title="Bitácora">
 	<ion-content class="content-bitacora">
+	<ion-refresher
+    pulling-text="Actualizar..."
+    on-refresh="recargarDatos()">
+	</ion-refresher>
 		<!-- Lista con las tareas ordenadas de las actividades a realizar -->
 	    <div class="card card-bitacora" ng-repeat="cliente in clientes" ng-show="filteredEntries.length">
 	    	<div class="list">

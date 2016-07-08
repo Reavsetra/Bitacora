@@ -27,7 +27,6 @@ angular.module('starter', ['ionic' , 'ngCordova', 'starter.controllers', 'ngStor
   };
 
   $http.defaults.headers.post = defaultHTTPHeaders;
-
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -95,4 +94,43 @@ angular.module('starter', ['ionic' , 'ngCordova', 'starter.controllers', 'ngStor
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
+})
+//Cambiar campos a Minúsculas
+.directive('lowercase', function () {
+  return {
+    require: 'ngModel',
+    link: function ($scope, elem, attrs, ngModelCtrl) {
+      var lowercase = function (inputValue) {
+        if(inputValue == undefined) inputValue = '';
+        var lowercased = inputValue.toLowerCase();
+        if(lowercased !== inputValue) {
+          ngModelCtrl.$setViewValue(lowercased);
+          ngModelCtrl.$render();
+        }
+        return lowercased;
+      }
+      ngModelCtrl.$parsers.unshift(lowercase);
+      lowercase($scope[attrs.ngModel]);
+    }
+  };
+})
+
+//Cambiar campos a Mayusculas
+.directive('capitalize', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attrs, modelCtrl) {
+        var capitalize = function(inputValue) {
+          if (inputValue == undefined) inputValue = '';
+          var capitalized = inputValue.toUpperCase();
+          if (capitalized !== inputValue) {
+            modelCtrl.$setViewValue(capitalized);
+            modelCtrl.$render();
+          }
+          return capitalized;
+        }
+        modelCtrl.$parsers.push(capitalize);
+        capitalize(scope[attrs.ngModel]); // capitalize initial value
+      }
+    };
 });
